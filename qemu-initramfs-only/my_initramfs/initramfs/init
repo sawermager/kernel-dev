@@ -1,7 +1,0 @@
-#!/bin/busybox sh
-
-# Do your stuff here.
-echo "This script just mounts and boots the rootfs, nothing else!"
-
-/bin/busybox sh
-
