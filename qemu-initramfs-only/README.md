@@ -1,4 +1,4 @@
-# __My Random QEMU Kernel Dev Booting Stuffs__  
+# __My Random QEMU (x86_64) Kernel Dev Booting Stuffs__  
     
   
     
@@ -48,7 +48,7 @@ ls -lrt /boot
 sudo qemu-system-x86_64 -kernel /boot/vmlinuz-5.2.21 -initrd /boot/custom-initramfs.cpio.gz -nographic -append "root=/dev/sda2 console=ttyS0" --enable-kvm  
 ```
 
-#TODO:  Boot QEMU with rootfs built using Buildroot.  
+#TODO:  Boot QEMU with handmade rootfs built using Buildroot.  
 (https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e)  
-#TODO:  Boot QEMU with rootfs built using Yacto.  
+#TODO:  Boot QEMU with handmade rootfs built using Yacto.  
 
