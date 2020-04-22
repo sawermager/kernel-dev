@@ -53,3 +53,10 @@ dkms.conf
 
 # My dev dirs and images
 *.img
+*.*z
+LFT/*.tar
+LFT/*.*z
+*.dir
+
+
+
