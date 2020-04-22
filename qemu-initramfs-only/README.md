@@ -1,13 +1,12 @@
-# __My Random QEMU Kernel Dev Booting Stuffs__
+# __My Random QEMU Kernel Dev Booting Stuffs__  
 
+## __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE__  
+_Takes long time due to download of image_  
+(https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/)  
 
-## __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE__
-Takes long time due to download of image_
-(https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/)
-
-### QEMU setup script to include a release debian rootfs
+### QEMU setup script to include a release debian rootfs  
 '''
- #!/bin/sh
+#!/bin/sh
 IMG=qemu-image.img
 DIR=mount-point.dir
 qemu-img create $IMG 1g
@@ -19,36 +18,36 @@ sudo debootstrap --arch amd64 buster $DIR
 sudo umount $DIR
 rmdir $DIR
 
- # This will boot to single-user mode and allow change of root password "su -"
-sudo qemu-system-x86_64 -kernel /boot/vmlinuz-`uname -r`\
-                          -hda qemu-image.img\
-                          -append "root=/dev/sda2 single console=ttyS0"\
-			  -nographic\
-			  --enable-kvm
+# This will boot to single-user mode and allow change of root password "su -"
+sudo qemu-system-x86_64 -kernel /boot/vmlinuz-`uname -r`\  
+                          -hda qemu-image.img\  
+                          -append "root=/dev/sda2 single console=ttyS0"\  
+			  -nographic\  
+			  --enable-kvm  
 '''
 
-### Boot QEMU with dev kernel into an initramfs busybox prompt
+### Boot QEMU with dev kernel into an initramfs busybox prompt  
 '''
-export WORKSPACE="/home/saw/workspace/kernel-dev/qemu-initramfs-only/my_initramfs"
-sudo mkdir --parents $WORKSPACE/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}
-sudo cp --archive /dev/{null,console,tty,sda1} $WORKSPACE/initramfs/dev/
-#NOTE: Busybox must be STATIC! ...'ldd /bin/busybox' to verify it is static
-sudo cp /bin/busybox /usr/src/initramfs/bin/
-ldd /usr/src/initramfs/bin/busybox 
-sudo vi $WORKSPACE/initramfs/init
-'''
-
-'''
-#init contents:
-#!/bin/busybox sh
-sudo chmod +x /usr/src/initramfs/init
-cd <workspace>/initramfs/
-sudo find . -print0 | cpio --null --create --verbose --format=newc | gzip --best > /tmp/custom-initramfs.cpio.gz; sudo cp /tmp/custom-initramfs.cpio.gz /boot/custom-initramfs.cpio.gz
-ls -lrt /boot
-sudo qemu-system-x86_64 -kernel /boot/vmlinuz-5.2.21 -initrd /boot/custom-initramfs.cpio.gz -nographic -append "root=/dev/sda2 console=ttyS0" --enable-kvm
+export WORKSPACE="/home/saw/workspace/kernel-dev/qemu-initramfs-only/my_initramfs"  
+sudo mkdir --parents $WORKSPACE/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}  
+sudo cp --archive /dev/{null,console,tty,sda1} $WORKSPACE/initramfs/dev/  
+#NOTE: Busybox must be STATIC! ...'ldd /bin/busybox' to verify it is static  
+sudo cp /bin/busybox /usr/src/initramfs/bin/  
+ldd /usr/src/initramfs/bin/busybox   
+sudo vi $WORKSPACE/initramfs/init  
 '''
 
-#TODO:  Boot QEMU with rootfs built using Buildroot.
-(https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e)
-#TODO:  Boot QEMU with rootfs built using Yacto.
+'''
+#init contents:  
+#!/bin/busybox sh  
+sudo chmod +x /usr/src/initramfs/init  
+cd <workspace>/initramfs/  
+sudo find . -print0 | cpio --null --create --verbose --format=newc | gzip --best > /tmp/custom-initramfs.cpio.gz; sudo cp /tmp/custom-initramfs.cpio.gz /boot/custom-initramfs.cpio.gz  
+ls -lrt /boot  
+sudo qemu-system-x86_64 -kernel /boot/vmlinuz-5.2.21 -initrd /boot/custom-initramfs.cpio.gz -nographic -append "root=/dev/sda2 console=ttyS0" --enable-kvm  
+'''
+
+#TODO:  Boot QEMU with rootfs built using Buildroot.  
+(https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e)  
+#TODO:  Boot QEMU with rootfs built using Yacto.  
 
