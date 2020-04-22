@@ -1,11 +1,11 @@
-#__My Random Linux Kernel Development Work/Fun-stuff__#
+# __My Random QEMU Kernel Dev Booting Stuffs__
 
 
-##__BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE__## 
-_Takes long time due to download of image_
+## __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE__
+Takes long time due to download of image_
 (https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/)
 
-###QEMU setup script to include a release debian rootfs###
+### QEMU setup script to include a release debian rootfs
 '''
  #!/bin/sh
 IMG=qemu-image.img
@@ -27,20 +27,20 @@ sudo qemu-system-x86_64 -kernel /boot/vmlinuz-`uname -r`\
 			  --enable-kvm
 '''
 
-###Boot QEMU with dev kernel into an initramfs busybox prompt###
+### Boot QEMU with dev kernel into an initramfs busybox prompt
 '''
 export WORKSPACE="/home/saw/workspace/kernel-dev/qemu-initramfs-only/my_initramfs"
 sudo mkdir --parents $WORKSPACE/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}
 sudo cp --archive /dev/{null,console,tty,sda1} $WORKSPACE/initramfs/dev/
- # NOTE: Busybox must be STATIC! ...'ldd /bin/busybox' to verify it is static
+#NOTE: Busybox must be STATIC! ...'ldd /bin/busybox' to verify it is static
 sudo cp /bin/busybox /usr/src/initramfs/bin/
 ldd /usr/src/initramfs/bin/busybox 
 sudo vi $WORKSPACE/initramfs/init
 '''
 
 '''
- # init contents:
- #!/bin/busybox sh
+#init contents:
+#!/bin/busybox sh
 sudo chmod +x /usr/src/initramfs/init
 cd <workspace>/initramfs/
 sudo find . -print0 | cpio --null --create --verbose --format=newc | gzip --best > /tmp/custom-initramfs.cpio.gz; sudo cp /tmp/custom-initramfs.cpio.gz /boot/custom-initramfs.cpio.gz
