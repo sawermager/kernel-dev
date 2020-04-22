@@ -10,7 +10,7 @@ Boot Flavor  |
 
 &nbsp;
 &nbsp;
-## 1. __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE ROOTFS__  
+## 1. __BOOT QEMU VM DEV Kernel + ANY DEBIAN DISTRO RELEASE ROOTFS__  
 _Takes long time due to download of image_  
 (https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/)  
 
