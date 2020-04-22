@@ -1,7 +1,9 @@
 # __My Random QEMU Kernel Dev Booting Stuffs__  
+    
   
-
-## __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE__  
+    
+  
+## __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE ROOTFS__  
 _Takes long time due to download of image_  
 (https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/)  
 
@@ -27,7 +29,7 @@ sudo qemu-system-x86_64 -kernel /boot/vmlinuz-`uname -r`\
 			  --enable-kvm   
 ```  
   
-### Boot QEMU with dev kernel into an initramfs busybox prompt  
+### Boot QEMU with dev kernel into an initramfs busybox prompt: NO ROOTFS  
 ```
 export WORKSPACE="/home/saw/workspace/kernel-dev/qemu-initramfs-only/my_initramfs"  
 sudo mkdir --parents $WORKSPACE/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}  
