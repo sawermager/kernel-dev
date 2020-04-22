@@ -1,8 +1,6 @@
 # __My Random QEMU (x86_64) Kernel Dev Booting Stuffs__  
-    
-  
-    
-  
+&nbsp
+&nbsp
 ## __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE ROOTFS__  
 _Takes long time due to download of image_  
 (https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/)  
@@ -47,7 +45,8 @@ sudo find . -print0 | cpio --null --create --verbose --format=newc | gzip --best
 ls -lrt /boot  
 sudo qemu-system-x86_64 -kernel /boot/vmlinuz-5.2.21 -initrd /boot/custom-initramfs.cpio.gz -nographic -append "root=/dev/sda2 console=ttyS0" --enable-kvm  
 ```
-
+&nbsp
+&nbsp
 #TODO:  Boot QEMU with handmade rootfs built using Buildroot.  
 (https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e)  
 #TODO:  Boot QEMU with handmade rootfs built using Yacto.  
