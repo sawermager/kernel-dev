@@ -1,7 +1,16 @@
-# __My Random QEMU (x86_64) Kernel Dev Booting Stuffs__  
+# __Booting QEMU/KVM (x86) with Linux Development Kernels__
+
+Boot Flavor  | 
+------------ | 
+1. Dev Kernel with Distro Rootfs
+2. Dev Kernel with buysbox initramfs
+3. Dev Kernel with minimal handmade Buildroot Rootfs
+4. Dev Kernel with minimal handmade Yacto Rootfs
+
+
 &nbsp;
 &nbsp;
-## __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE ROOTFS__  
+## 1. __BOOT QEMU VM WITH ANY DEBIAN DISTRO RELEASE ROOTFS__  
 _Takes long time due to download of image_  
 (https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/)  
 
@@ -27,7 +36,7 @@ sudo qemu-system-x86_64 -kernel /boot/vmlinuz-`uname -r`\
 			  --enable-kvm   
 ```  
   
-### Boot QEMU with dev kernel into an initramfs busybox prompt: NO ROOTFS  
+### 2. Boot QEMU with dev kernel into an initramfs busybox prompt: NO ROOTFS  
 ```
 export WORKSPACE="/home/saw/workspace/kernel-dev/qemu-initramfs-only/my_initramfs"  
 sudo mkdir --parents $WORKSPACE/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}  
@@ -47,7 +56,7 @@ sudo qemu-system-x86_64 -kernel /boot/vmlinuz-5.2.21 -initrd /boot/custom-initra
 ```
 &nbsp;
 &nbsp;
-#TODO:  Boot QEMU with handmade rootfs built using Buildroot.  
+#TODO:  3. Boot QEMU with handmade rootfs built using Buildroot.  
 (https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e)  
-#TODO:  Boot QEMU with handmade rootfs built using Yacto.  
+#TODO:  4. Boot QEMU with handmade rootfs built using Yacto.  
 
