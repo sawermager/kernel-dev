@@ -55,7 +55,7 @@ ls -lrt /boot
 sudo qemu-system-x86_64 -kernel /boot/vmlinuz-5.2.21 -initrd /boot/custom-initramfs.cpio.gz -nographic -append "root=/dev/sda2 console=ttyS0" --enable-kvm  
 ```
 &nbsp;
-&nbsp;
+&nbsp;  
 #TODO:  3. Boot QEMU with handmade rootfs built using Buildroot.  
 (https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e)  
 #TODO:  4. Boot QEMU with handmade rootfs built using Yacto.  
