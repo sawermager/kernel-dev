@@ -49,6 +49,7 @@ sudo vi $WORKSPACE/initramfs/init
 
 #init contents:  
 #!/bin/busybox sh  
+/bin/busybox sh
 
 sudo chmod +x /usr/src/initramfs/init  
 cd <workspace>/initramfs/  
