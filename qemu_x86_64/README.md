@@ -49,8 +49,7 @@ sudo vi $WORKSPACE/initramfs/init
 
 #init contents:  
 #!/bin/busybox sh  
-&nbsp;
-&nbsp; 
+
 sudo chmod +x /usr/src/initramfs/init  
 cd <workspace>/initramfs/  
 sudo find . -print0 | cpio --null --create --verbose --format=newc | gzip --best > /tmp/custom-initramfs.cpio.gz; sudo cp /tmp/custom-initramfs.cpio.gz /boot/custom-initramfs.cpio.gz  
