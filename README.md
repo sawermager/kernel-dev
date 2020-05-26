@@ -3,4 +3,4 @@
 Directory    | Description
 ------------ | -------------
 qemu-x86_64  | initramfs-only and distro rootfs bootable QEMU/KVM VM How-to's
-LFD          | LinuxFoundation Kernel Development Class
+LFD          | Linux Foundation Kernel Development Class
